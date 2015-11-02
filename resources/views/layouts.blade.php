@@ -4,7 +4,12 @@
 	<title>{{ \Larabsent::config(['appName']) }}</title>
 	
 	<link rel="stylesheet"  href = '/css/app.css'>
-
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ \Larabsent::assetUrl(null) }}js/sweetalert/dist/sweetalert.css">
+ 
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+   <script src="{{ \Larabsent::assetUrl(null) }}js/sweetalert/dist/sweetalert.min.js"></script> 
 </head>
 
 <body>
@@ -25,7 +30,7 @@
             
             <li class="active"><a href="{{ url('/') }}">Home</a></li>
           	
-          	<li ><a href="{{ url('jabatan') }}">Data Jabatan</a></li>
+          	<li ><a href="{{ url('position') }}">Data Jabatan / Position</a></li>
             
             <li ><a href="{{ url('pegawai') }}">Data Pegawai</a></li>
           
@@ -40,6 +45,9 @@
 	<div class="container">
 		@yield('content')
 	</div>
+
+         <!-- jQuery -->
+        
 
 </body>
 

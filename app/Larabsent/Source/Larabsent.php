@@ -25,4 +25,13 @@ class Larabsent extends Config
 		return 'contents';
 	}
 
+	public function message($title = "" , $text = "" , $type = "" , $button = "")
+	{
+		return '<script>
+
+			swal({   title: "'.$title.'",   text: "'.$text.'",   type: "'.$type.'",   confirmButtonText: "'.$button.'" });
+
+		</script>';
+	}
+
 }
