@@ -39,4 +39,9 @@ class Position extends Model
 
     	];
     }
+
+    public function user()
+    {
+        return $this->hasMany('App\Employee');
+    }
 }

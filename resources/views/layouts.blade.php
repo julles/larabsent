@@ -32,7 +32,7 @@
           	
           	<li ><a href="{{ url('position') }}">Data Jabatan / Position</a></li>
             
-            <li ><a href="{{ url('pegawai') }}">Data Pegawai</a></li>
+            <li ><a href="{{ url('employee') }}">Data Pegawai / Employee</a></li>
           
           </ul>
         

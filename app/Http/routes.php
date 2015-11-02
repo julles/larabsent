@@ -4,3 +4,5 @@ Route::get('/', function () {
 });
 
 Route::controller('position' , 'PositionController');
+
+Route::controller('employee' , 'EmployeeController');
