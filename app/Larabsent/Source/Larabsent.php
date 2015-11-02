@@ -1,10 +1,28 @@
 <?php namespace App\Larabsent\Source;
 
-class Larabsent{
+use App\Larabsent\Source\Config;
 
-	public function starter()
+class Larabsent extends Config
+{
+
+	public function config($value = [])
 	{
-		//
+		$attribute = $this->settings();
+
+		foreach($value  as $key)
+		{
+			return $attribute[$key];;
+		}
+	}
+
+	public function assetUrl($path)
+	{
+		return asset($path);
+	}
+
+	public function contents()
+	{
+		return 'contents';
 	}
 
 }
