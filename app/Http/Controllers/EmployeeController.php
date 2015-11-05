@@ -35,8 +35,9 @@ class EmployeeController extends Controller
 
         ->addColumn('action' , function($model){
 
-           $edit =  '<a class = "btn btn-primary" href = "'.url('position/update/'.$model->id).'">Update</a>';
-           $delete =  '<a onclick = "return confirm(\'anda yakin menghapus data ini ?\')" class = "btn btn-danger" href = "'.url('position/delete/'.$model->id).'">Delete</a>';
+           $edit =  '<a class = "btn btn-primary" href = "'.url('employee/update/'.$model->id).'">Update</a>';
+           
+           $delete =  '<a onclick = "return confirm(\'anda yakin menghapus data ini ?\')" class = "btn btn-danger" href = "'.url('employee/delete/'.$model->id).'">Delete</a>';
 
            return $edit.' '.$delete;
         })
@@ -60,15 +61,40 @@ class EmployeeController extends Controller
     {
         $inputs = $request->all();
 
-        $validation = Validator::make($inputs , $this->model->rules() , $this->model->messages());
+        $validation = \Validator::make($inputs , $this->model->rules());
 
         if($validation->fails())
         {
             return redirect()->back()->withInput()->withErrors($validation);
         }
 
-        $this->model->create($inputs);
+        $create = $this->model->create($inputs);
 
-        return redirect('position/index')->withMessage('Data has been saved!');
+        
+        $file = \Input::file('photo');
+
+        if(!empty($file))
+        {
+            $imageName = 'employee-'.$create->id.'.'.$file->getClientOriginalExtension();
+
+            $file->move(Larabsent::contents(),$imageName);
+
+            $updateName = $this->model->find($create->id)->update(['photo' => $imageName]);
+        }
+
+       
+
+        return redirect('employee/index')->withMessage('Data has been saved!');
+    }
+
+    public function getUpdate($id)
+    {
+        $model = $this->model->find($id);
+        
+        $action = 'Update';
+
+        $positions = $this->positions; 
+
+        return view('employee.form' ,  compact('model' , 'action' ,'positions'));
     }
 }

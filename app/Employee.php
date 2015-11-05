@@ -29,8 +29,10 @@ class Employee extends Model
     	return [
     		'position_id' => 'required',
     		'nip' => 'required|'.$uniqueNip,
-    		'phone' => 'max:15|numeric',
+    		'phone' => 'numeric',
     		'email' => 'required|email|'.$uniqueEmail,
+            'name' => 'required',
+            'file' => 'mimes:jpg,png,gif',
     	];
     }
 

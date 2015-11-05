@@ -14,7 +14,7 @@
 	
 	@endif
 
-	<h2 class="divider">Position</h2>
+	<h2 class="divider">Employee</h2>
 
 	
 	<div id = 'larabsent_table'>

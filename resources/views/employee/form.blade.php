@@ -6,7 +6,7 @@
 
 	<hr/>
 
-	{!! Form::model($model) !!}
+	{!! Form::model($model , ['enctype' => 'multipart/form-data']) !!}
 	  
 	   <div class="form-group">
 	    <label>Position</label>
@@ -50,7 +50,7 @@
 	  <div class="form-group">
 	    <label>Gender</label>
 	  
-	    {!! Form::select('gender' ,  ['p' => 'Pria' ,  'w' => 'Wanita'] , null , ['class' => 'form-control']) !!}
+	    {!! Form::select('gender' ,  ['p' => 'Pria' ,  'w' => 'Wanita'] , null , ['class' => 'form-control' ]) !!}
 	  
 	  	<div class="larabsent_error">
 	  		
@@ -63,7 +63,7 @@
 	  <div class="form-group">
 	    <label>Phone</label>
 	  
-	    {!! Form::text('phone' ,  null , ['class' => 'form-control']) !!}
+	    {!! Form::text('phone' ,  null , ['class' => 'form-control' ,'maxlength' => 15]) !!}
 	  
 	  	<div class="larabsent_error">
 	  		
@@ -98,6 +98,23 @@
 	  	</div>
 	  
 	  </div>
+
+	  @if(!empty($model->photo))
+
+	  	<div class="form-group">
+		    <label>Old Photo</label>
+		  	<br/>
+		    <img src="{{ \Larabsent::assetUrl(\Larabsent::contents().'/'.$model->photo) }}" width = '200' height="200" />
+		  
+		  	<div class="larabsent_error">
+		  		
+		  		{{ $errors->first('photo') }}
+		  		<input type = 'hidden' name = 'oldPhoto' value = '{{ $model->photo }}' />
+		  	</div>
+		  
+		  </div>
+
+	  @endif
 
 	  <button type="submit" class="btn btn-info">Submit</button>
 	  
